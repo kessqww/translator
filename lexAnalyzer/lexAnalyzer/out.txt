@@ -1,2 +1,33 @@
-FloatLiteral    : 12.34
+Preprocessor    : #include <iostream>
+
+Keyword         : using
+Keyword         : namespace
+Identifier      : std
+Punctuation     : ;
+Keyword         : int
+Identifier      : main
+Punctuation     : (
+Punctuation     : )
+Punctuation     : {
+Keyword         : int
+Identifier      : a
+Punctuation     : ,
+Identifier      : b
+Punctuation     : ;
+Comment         : //initializing a and b
+
+Identifier      : cout
+Operator        : <<
+Identifier      : a
+Operator        : +
+Identifier      : b
+Punctuation     : ;
+Comment         : /* multilined comments
+    calcilating very difficult math problem...
+    deep thinking
+    */
+Keyword         : return
+IntegerLiteral  : 0
+Punctuation     : ;
+Punctuation     : }
 End Of File     : 

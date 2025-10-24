@@ -1,1 +1,12 @@
-12.34
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int a, b; //initializing a and b
+    cout << a + b; /* multilined comments
+    calcilating very difficult math problem...
+    deep thinking
+    */
+    return 0;
+}

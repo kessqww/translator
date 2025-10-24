@@ -111,54 +111,48 @@ public:
         while (true) {
             skipWhitespace();
             if (eof()) {
-                tokens.push_back({ TokenType::EndOfFile, "", line, col });
+                tokens.push_back({TokenType::EndOfFile, "", line, col});
                 break;
             }
             int startLine = line, startCol = col;
-            char c = peek();
-
+            char c = curChar();
             if (c == '#' && (col == 1)) {
                 string pp = readUntil('\n');
-                tokens.push_back({ TokenType::Preprocessor, pp, startLine, startCol });
+                tokens.push_back({TokenType::Preprocessor, pp, startLine, startCol});
                 continue;
             }
-
             // комментарии
             if (c == '/') {
-                if (peek(1) == '/') {
+                if (curChar(1) == '/') {
                     string com = readUntil('\n');
-                    tokens.push_back({ TokenType::Comment, com, startLine, startCol });
+                    tokens.push_back({TokenType::Comment, com, startLine, startCol});
                     continue;
                 }
-                else if (peek(1) == '*') {
+                else if (curChar(1) == '*') {
                     string com = readBlockComment();
-                    tokens.push_back({ TokenType::Comment, com, startLine, startCol });
+                    tokens.push_back({TokenType::Comment, com, startLine, startCol});
                     continue;
                 }
             }
-
             // строковый литерал
             if (c == '"') {
                 string s = readStringLiteral();
-                tokens.push_back({ TokenType::StringLiteral, s, startLine, startCol });
+                tokens.push_back({TokenType::StringLiteral, s, startLine, startCol});
                 continue;
             }
-
             // символ литерал
             if (c == '\'') {
                 string s = readCharLiteral();
-                tokens.push_back({ TokenType::CharLiteral, s, startLine, startCol });
+                tokens.push_back({TokenType::CharLiteral, s, startLine, startCol});
                 continue;
             }
-
             // число
-            if (isdigit(c) || (c == '.' && isdigit(peek(1)))) {
+            if (isdigit(c) || (c == '.' && isdigit(curChar(1)))) {
                 Token t = readNumber();
                 t.line = startLine; t.column = startCol;
                 tokens.push_back(t);
                 continue;
             }
-
             // идентификаторы; зарезервированные слова
             if (isalpha(c) || c == '_') {
                 string id = readIdentifier();
@@ -167,22 +161,20 @@ public:
                 tokens.push_back({ tt, id, startLine, startCol });
                 continue;
             }
-
             // оператор; пунктуация
             {
                 auto m = opBor.longestMatch(src, pos);
                 if (m.first > 0) {
                     string op = m.second;
-                    advance(m.first);
+                    nextChar(m.first);
                     TokenType tt = isPunctuation(op) ? TokenType::Punctuation : TokenType::Operator;
                     tokens.push_back({ tt, op, startLine, startCol });
                     continue;
                 }
             }
-
             // неизвестный символ
             string s(1, c);
-            advance(1);
+            nextChar(1);
             tokens.push_back({ TokenType::Unknown, s, startLine, startCol });
         }
         return tokens;
@@ -196,8 +188,8 @@ private:
     Bor opBor;
 
     bool eof() const { return pos >= (int)src.size(); }
-    char peek(int ahead = 0) const { return (pos + ahead < (int)src.size()) ? src[pos + ahead] : '\0'; }
-    void advance(int n = 1) {
+    char curChar(int ahead = 0) const { return (pos + ahead < (int)src.size()) ? src[pos + ahead] : '\0'; }
+    void nextChar(int n = 1) {
         for (int i = 0; i < n && pos < (int)src.size(); ++i) {
             if (src[pos] == '\n') { ++line; col = 1; }
             else ++col;
@@ -205,88 +197,81 @@ private:
         }
     }
     void skipWhitespace() {
-        while (!eof() && isspace(peek())) advance();
+        while (!eof() && isspace(curChar())) nextChar();
     }
-
     string readUntil(char terminator) {
         string out;
         while (!eof()) {
-            char c = peek();
+            char c = curChar();
             out.push_back(c);
-            advance();
+            nextChar();
             if (c == terminator) break;
         }
         return out;
     }
-
     string readBlockComment() {
         string out;
-        if (peek() == '/' && peek(1) == '*') {
-            out += "/*"; advance(2);
+        if (curChar() == '/' && curChar(1) == '*') {
+            out += "/*"; nextChar(2);
         }
         while (!eof()) {
-            char c = peek(); out.push_back(c); advance();
-            if (c == '*' && peek() == '/') {
-                out.push_back('/'); advance(); break;
+            char c = curChar(); out.push_back(c); nextChar();
+            if (c == '*' && curChar() == '/') {
+                out.push_back('/'); nextChar(); break;
             }
         }
         return out;
     }
-
     string readStringLiteral() {
-        string out; out.push_back('"'); advance();
+        string out; out.push_back('"'); nextChar();
         while (!eof()) {
-            char c = peek(); out.push_back(c); advance();
-            if (c == '\\' && !eof()) { out.push_back(peek()); advance(); continue; }
+            char c = curChar(); out.push_back(c); nextChar();
+            if (c == '\\' && !eof()) { out.push_back(curChar()); nextChar(); continue; }
             if (c == '"') break;
         }
         return out;
     }
-
     string readCharLiteral() {
-        string out; out.push_back('\''); advance();
+        string out; out.push_back('\''); nextChar();
         while (!eof()) {
-            char c = peek(); out.push_back(c); advance();
-            if (c == '\\' && !eof()) { out.push_back(peek()); advance(); continue; }
+            char c = curChar(); out.push_back(c); nextChar();
+            if (c == '\\' && !eof()) { out.push_back(curChar()); nextChar(); continue; }
             if (c == '\'') break;
         }
         return out;
     }
-
     Token readNumber() {
         int startPos = pos;
         bool isFloat = false;
-        if (peek() == '0' && (peek(1) == 'x' || peek(1) == 'X')) {
-            advance(2);
-            while (isxdigit(peek())) advance();
+        if (curChar() == '0' && (curChar(1) == 'x' || curChar(1) == 'X')) {
+            nextChar(2);
+            while (isxdigit(curChar())) nextChar();
             string lex = src.substr(startPos, pos - startPos);
             return { TokenType::IntegerLiteral, lex, line, col };
         }
-        while (isdigit(peek())) advance();
-        if (peek() == '.' && isdigit(peek(1))) {
-            isFloat = true; advance();
-            while (isdigit(peek())) advance();
+        while (isdigit(curChar())) nextChar();
+        if (curChar() == '.' && isdigit(curChar(1))) {
+            isFloat = true; nextChar();
+            while (isdigit(curChar())) nextChar();
         }
-        if (peek() == 'e' || peek() == 'E') {
-            isFloat = true; advance();
-            if (peek() == '+' || peek() == '-') advance();
-            while (isdigit(peek())) advance();
+        if (curChar() == 'e' || curChar() == 'E') {
+            isFloat = true; nextChar();
+            if (curChar() == '+' || curChar() == '-') nextChar();
+            while (isdigit(curChar())) nextChar();
         }
-        while (isalpha(peek())) {
-            char c = peek();
-            if (strchr("uUlLfF", c)) advance();
+        while (isalpha(curChar())) {
+            char c = curChar();
+            if (strchr("uUlLfF", c)) nextChar();
             else break;
         }
         string lex = src.substr(startPos, pos - startPos);
         return { isFloat ? TokenType::FloatLiteral : TokenType::IntegerLiteral, lex, line, col };
     }
-
     string readIdentifier() {
-        int start = pos; advance();
-        while (isalnum(peek()) || peek() == '_') advance();
+        int start = pos; nextChar();
+        while (isalnum(curChar()) || curChar() == '_') nextChar();
         return src.substr(start, pos - start);
     }
-
     bool isPunctuation(const string& s) const {
         const char* punct[] = {
             "(", ")", "{", "}", "[", "]", ";", ",", ":", "?", "~", ".", "->", "::", nullptr
@@ -296,22 +281,20 @@ private:
         }
         return false;
     }
-
     void buildKeywordBor() {
-        vector<string> keywords = {
-            "alignas","alignof","and","and_eq","asm","auto","bool","break","case","catch","char",
-            "class","const","constexpr","continue","decltype","default","delete","do","double","else",
-            "enum","explicit","export","extern","false","float","for","friend","goto","if","inline",
-            "int","long","mutable","namespace","new","noexcept","not","nullptr","operator","or","private",
-            "protected","public","register","reinterpret_cast","return","short","signed","sizeof","static",
-            "struct","switch","template","this","throw","true","try","typedef","typename","union",
-            "unsigned","using","virtual","void","volatile","while","xor"
+        vector <string> keywords = {
+            "and", "auto","bool","break","case","catch","char",
+            "class","const", "continue","default","delete","do","double","else",
+            "false","float","for","friend","goto","if",
+            "int","long","namespace","new","not","nullptr","operator","or","private",
+            "protected","public","return","short","signed","sizeof","static",
+            "struct","switch","template","this","throw","true","try","typedef","typename",
+            "unsigned","using","virtual","void","while","xor"
         };
         for (auto& k : keywords) keywordBor.insert(k);
     }
-
     void buildOperatorBor() {
-        vector<string> ops = {
+        vector <string> ops = {
             ">>=", "<<=", "->*", "->", "++", "--", "==", "!=", "<=", ">=", "&&", "||",
             "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "##", "::", ".*", "<<", ">>",
             "+", "-", "*", "/", "%", "&", "|", "^", "!", "~", "=", "<", ">", "(", ")", "{", "}", "[", "]", ";", ",", ".", ":", "?", "#"
@@ -321,15 +304,7 @@ private:
 };
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     ifstream in("in.txt");
-    if (!in) {
-        cerr << "Error: file is not found in.txt\n";
-        return 1;
-    }
-
     ostringstream ss;
     ss << in.rdbuf();
     string source = ss.str();
@@ -339,16 +314,9 @@ int main() {
     auto tokens = lexer.tokenize();
 
     ofstream out("out.txt");
-    if (!out) {
-        cerr << "Error: cannot open out.txt for writing\n";
-        return 1;
-    }
-
     for (auto& t : tokens) {
-        out << left << setw(15) << tokenTypeName(t.type)
-            << " : " << t.lexeme << "\n";
+        out << left << setw(15) << tokenTypeName(t.type) << " : " << t.lexeme << "\n";
     }
-
     out.close();
     cout << "Lexical analyzer is finished. View reults in out.txt\n";
     return 0;
