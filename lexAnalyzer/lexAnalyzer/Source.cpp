@@ -4,8 +4,6 @@
 #include <iomanip>
 #include <string>
 #include <vector>
-#include <unordered_map>
-#include <unordered_set>
 #include <cctype>
 #include <cstring>   
 #include <utility>
@@ -51,22 +49,21 @@ static string tokenTypeName(TokenType t) {
     }
 }
 
-//бор
-struct TrieNode {
-    unordered_map<char, TrieNode*> next;
+struct BorNode {
+    BorNode* next[256] = { nullptr };
     bool terminal = false;
     string value;
 };
 
-class Trie {
+class Bor {
 public:
-    Trie() { root = new TrieNode(); }
-    ~Trie() { clear(root); }
+    Bor() { root = new BorNode(); }
+    ~Bor() { clear(root); }
 
     void insert(const string& s) {
-        TrieNode* cur = root;
-        for (char c : s) {
-            if (!cur->next.count(c)) cur->next[c] = new TrieNode();
+        BorNode* cur = root;
+        for (unsigned char c : s) {
+            if (!cur->next[c]) cur->next[c] = new BorNode();
             cur = cur->next[c];
         }
         cur->terminal = true;
@@ -74,14 +71,14 @@ public:
     }
 
     pair<int, string> longestMatch(const string& s, int pos) const {
-        TrieNode* cur = root;
+        BorNode* cur = root;
         int bestLen = 0;
         string bestVal;
         int i = pos;
-        while (i < (int)s.size()) {
-            char c = s[i];
-            if (!cur->next.count(c)) break;
-            cur = cur->next.at(c);
+        while (i < s.size()) {
+            unsigned char c = s[i];
+            if (!cur->next[c]) break;
+            cur = cur->next[c];
             ++i;
             if (cur->terminal) {
                 bestLen = i - pos;
@@ -92,20 +89,21 @@ public:
     }
 
 private:
-    TrieNode* root;
-    void clear(TrieNode* node) {
+    BorNode* root;
+    void clear(BorNode* node) {
         if (!node) return;
-        for (auto& p : node->next) clear(p.second);
+        for (int i = 0; i < 256; ++i) {
+            if (node->next[i]) clear(node->next[i]);
+        }
         delete node;
     }
 };
 
-// лексер
 class Lexer {
 public:
     Lexer(const string& src) : src(src), pos(0), line(1), col(1) {
-        buildKeywordTrie();
-        buildOperatorTrie();
+        buildKeywordBor();
+        buildOperatorBor();
     }
 
     vector<Token> tokenize() {
@@ -125,7 +123,7 @@ public:
                 continue;
             }
 
-            // коммент
+            // комментарии
             if (c == '/') {
                 if (peek(1) == '/') {
                     string com = readUntil('\n');
@@ -164,7 +162,7 @@ public:
             // идентификаторы; зарезервированные слова
             if (isalpha(c) || c == '_') {
                 string id = readIdentifier();
-                auto m = keywordTrie.longestMatch(id, 0);
+                auto m = keywordBor.longestMatch(id, 0);
                 TokenType tt = (m.first == (int)id.size()) ? TokenType::Keyword : TokenType::Identifier;
                 tokens.push_back({ tt, id, startLine, startCol });
                 continue;
@@ -172,7 +170,7 @@ public:
 
             // оператор; пунктуация
             {
-                auto m = opTrie.longestMatch(src, pos);
+                auto m = opBor.longestMatch(src, pos);
                 if (m.first > 0) {
                     string op = m.second;
                     advance(m.first);
@@ -194,13 +192,13 @@ private:
     string src;
     int pos;
     int line, col;
-    Trie keywordTrie;
-    Trie opTrie;
+    Bor keywordBor;
+    Bor opBor;
 
     bool eof() const { return pos >= (int)src.size(); }
     char peek(int ahead = 0) const { return (pos + ahead < (int)src.size()) ? src[pos + ahead] : '\0'; }
     void advance(int n = 1) {
-        for (int i = 0;i < n && pos < (int)src.size();++i) {
+        for (int i = 0; i < n && pos < (int)src.size(); ++i) {
             if (src[pos] == '\n') { ++line; col = 1; }
             else ++col;
             ++pos;
@@ -290,13 +288,16 @@ private:
     }
 
     bool isPunctuation(const string& s) const {
-        static const unordered_set<string> punct = {
-            "(", ")", "{", "}", "[", "]", ";", ",", ":", "?", "~", ".", "->", "::"
+        const char* punct[] = {
+            "(", ")", "{", "}", "[", "]", ";", ",", ":", "?", "~", ".", "->", "::", nullptr
         };
-        return punct.count(s) > 0;
+        for (int i = 0; punct[i]; ++i) {
+            if (s == punct[i]) return true;
+        }
+        return false;
     }
 
-    void buildKeywordTrie() {
+    void buildKeywordBor() {
         vector<string> keywords = {
             "alignas","alignof","and","and_eq","asm","auto","bool","break","case","catch","char",
             "class","const","constexpr","continue","decltype","default","delete","do","double","else",
@@ -306,19 +307,18 @@ private:
             "struct","switch","template","this","throw","true","try","typedef","typename","union",
             "unsigned","using","virtual","void","volatile","while","xor"
         };
-        for (auto& k : keywords) keywordTrie.insert(k);
+        for (auto& k : keywords) keywordBor.insert(k);
     }
 
-    void buildOperatorTrie() {
+    void buildOperatorBor() {
         vector<string> ops = {
             ">>=", "<<=", "->*", "->", "++", "--", "==", "!=", "<=", ">=", "&&", "||",
             "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "##", "::", ".*", "<<", ">>",
             "+", "-", "*", "/", "%", "&", "|", "^", "!", "~", "=", "<", ">", "(", ")", "{", "}", "[", "]", ";", ",", ".", ":", "?", "#"
         };
-        for (auto& o : ops) opTrie.insert(o);
+        for (auto& o : ops) opBor.insert(o);
     }
 };
-
 
 int main() {
     ios::sync_with_stdio(false);
@@ -345,8 +345,7 @@ int main() {
     }
 
     for (auto& t : tokens) {
-        out << "[" << setw(4) << t.line << ":" << setw(3) << t.column << "] "
-            << left << setw(15) << tokenTypeName(t.type)
+        out << left << setw(15) << tokenTypeName(t.type)
             << " : " << t.lexeme << "\n";
     }
 

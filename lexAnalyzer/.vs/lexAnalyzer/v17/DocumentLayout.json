@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\",
+  "WorkspaceRootPath": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\in.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\in.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\in.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\out.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\out.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\out.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
@@ -22,23 +22,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "out.txt",
-              "DocumentMoniker": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\out.txt",
+              "DocumentMoniker": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\out.txt",
               "RelativeDocumentMoniker": "lexAnalyzer\\out.txt",
-              "ToolTip": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\out.txt",
+              "ToolTip": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\out.txt",
               "RelativeToolTip": "lexAnalyzer\\out.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
@@ -46,12 +42,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "in.txt",
-              "DocumentMoniker": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\in.txt",
+              "DocumentMoniker": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\in.txt",
               "RelativeDocumentMoniker": "lexAnalyzer\\in.txt",
-              "ToolTip": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\in.txt",
-              "RelativeToolTip": "lexAnalyzer\\in.txt",
+              "ToolTip": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\in.txt*",
+              "RelativeToolTip": "lexAnalyzer\\in.txt*",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-10-24T05:24:20.144Z",
@@ -59,13 +55,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Source.cpp",
-              "DocumentMoniker": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\Source.cpp",
+              "DocumentMoniker": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\Source.cpp",
               "RelativeDocumentMoniker": "lexAnalyzer\\Source.cpp",
-              "ToolTip": "C:\\Users\\krasn\\OneDrive\\Documents\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\Source.cpp",
-              "RelativeToolTip": "lexAnalyzer\\Source.cpp",
-              "ViewState": "AgIAAEABAAAAAAAAAADwv1EBAAAYAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\elina\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\translator\\lexAnalyzer\\lexAnalyzer\\Source.cpp*",
+              "RelativeToolTip": "lexAnalyzer\\Source.cpp*",
+              "ViewState": "AgIAAJUAAAAAAKA+JDEpwG0AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-23T21:44:00.434Z",
               "EditorCaption": ""
