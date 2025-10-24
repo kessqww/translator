@@ -100,7 +100,7 @@ private:
     }
 };
 
-// --- Lexer ---
+// лексер
 class Lexer {
 public:
     Lexer(const string& src) : src(src), pos(0), line(1), col(1) {
@@ -119,14 +119,13 @@ public:
             int startLine = line, startCol = col;
             char c = peek();
 
-            // Preprocessor
             if (c == '#' && (col == 1)) {
                 string pp = readUntil('\n');
                 tokens.push_back({ TokenType::Preprocessor, pp, startLine, startCol });
                 continue;
             }
 
-            // Comments
+            // коммент
             if (c == '/') {
                 if (peek(1) == '/') {
                     string com = readUntil('\n');
@@ -140,21 +139,21 @@ public:
                 }
             }
 
-            // String literal
+            // строковый литерал
             if (c == '"') {
                 string s = readStringLiteral();
                 tokens.push_back({ TokenType::StringLiteral, s, startLine, startCol });
                 continue;
             }
 
-            // Char literal
+            // символ литерал
             if (c == '\'') {
                 string s = readCharLiteral();
                 tokens.push_back({ TokenType::CharLiteral, s, startLine, startCol });
                 continue;
             }
 
-            // Number
+            // число
             if (isdigit(c) || (c == '.' && isdigit(peek(1)))) {
                 Token t = readNumber();
                 t.line = startLine; t.column = startCol;
@@ -162,7 +161,7 @@ public:
                 continue;
             }
 
-            // Identifier / Keyword
+            // идентификаторы; зарезервированные слова
             if (isalpha(c) || c == '_') {
                 string id = readIdentifier();
                 auto m = keywordTrie.longestMatch(id, 0);
@@ -171,7 +170,7 @@ public:
                 continue;
             }
 
-            // Operator / punctuation
+            // оператор; пунктуация
             {
                 auto m = opTrie.longestMatch(src, pos);
                 if (m.first > 0) {
@@ -183,7 +182,7 @@ public:
                 }
             }
 
-            // Unknown char
+            // неизвестный символ
             string s(1, c);
             advance(1);
             tokens.push_back({ TokenType::Unknown, s, startLine, startCol });
