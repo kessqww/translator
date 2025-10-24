@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\in.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\in.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\out.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{45EA5CFF-FD87-4312-84B3-BFBC1C9E1090}|lexAnalyzer\\lexAnalyzer.vcxproj|solutionrelative:lexAnalyzer\\out.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "out.txt",
+              "DocumentMoniker": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\out.txt",
+              "RelativeDocumentMoniker": "lexAnalyzer\\out.txt",
+              "ToolTip": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\out.txt",
+              "RelativeToolTip": "lexAnalyzer\\out.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-10-24T05:24:31.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "in.txt",
+              "DocumentMoniker": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\in.txt",
+              "RelativeDocumentMoniker": "lexAnalyzer\\in.txt",
+              "ToolTip": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\in.txt",
+              "RelativeToolTip": "lexAnalyzer\\in.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-10-24T05:24:20.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Source.cpp",
+              "DocumentMoniker": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\Source.cpp",
+              "RelativeDocumentMoniker": "lexAnalyzer\\Source.cpp",
+              "ToolTip": "C:\\Users\\krasn\\source\\repos\\lexAnalyzer\\lexAnalyzer\\Source.cpp",
+              "RelativeToolTip": "lexAnalyzer\\Source.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsBAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-23T21:44:00.434Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

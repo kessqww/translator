@@ -1,0 +1,5 @@
+[   1:  1] Identifier      : c
+[1   :2  ] Operator        : ++
+[1   :4  ] Operator        : +
+[1   :5  ] Identifier      : a
+[1   :6  ] EOF             : 
